@@ -33,42 +33,23 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-#include "../headers/compare_class.h"
-#include "../libcsv/libcsv.h"
-#include <istream>
-#include <deque>
 
-using std::deque;
-using std::istream;
-using csv::csv_creator;
-using csv::csv_parser;
-using csv::csv_handler;
+#include "headers/compare_class.h"
+#include <fstream>
+#include <iostream>
 
-namespace compare {
-	template<typename T>
-	compare_class<T>& operator >>(csv_parser<T>& input, compare_class<T>& target) {
-		input >> target.data;
-		return target;
-	}
+using compare::compare_class;
+using namespace std;
 
-	template<typename T>
-	csv_creator<T>& compare_class<T>::operator >>(csv_creator<T>& target) {
-		this->get_data() >> target;
-		return target;
-	}
+int main() {
+	ifstream input("../values.csv");
+	compare_class<int> compare_object;
 
-	template<typename T>
-	istream& operator >>(istream& input, compare_class<T>& target) {
-		csv_handler<T> temp_handler;
-		input >> temp_handler;
-		target.set_data(temp_handler.get_parsed_line());
-		return input;
-	}
+	input >> compare_object;
 
-	template<typename T>
-	ostream& operator <<(ostream& output, compare_class<T>& source) {
-		csv_handler<T> temp_handler;
-		source.data >> temp_handler >> output;
-		return output;
-	}
+	compare_object.compare_algorithms_verbose(cout);
+
+	return 0;
 }
+
+
