@@ -33,45 +33,14 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-
-#ifndef HEADERS_COMPARE_CLASS_H_
-#define HEADERS_COMPARE_CLASS_H_
-
-#include <deque>
-#include "../libcompare/libcompare.h"
-#include "../libcsv/libcsv.h"
-
-using std::deque;
-using csv::csv_creator;
-using csv::csv_parser;
-
-namespace compare {
+#ifndef HEADERS_SORT_H_
+#define HEADERS_SORT_H_
 
 template<typename T>
-class compare_class: public compare_base<deque<T> > { //derivation of compare_base with deque<T> type, algorithms and operators
-public:
-	compare_class<T>& operator =(string& input);
-	compare_class<T>& operator =(deque<T>& input);
-	template<typename S>
-	friend compare_class<S>& operator >>(csv_parser<S>& input, compare_class<S>& target);
-	csv_creator<T>& operator >>(csv_creator<T>& target);
-	template<typename S>
-	friend istream& operator >>(istream& input, compare_class<S>& target);
-	template<typename S>
-	friend ostream& operator <<(ostream& output, compare_class<S>& source);
-
-	int get_data_length() const; //get length of the data deque
-
-	void algorithm_1(const deque<T>& input, deque<T>& result); //implementation of merge sort
-	void algorithm_2(const deque<T>& input, deque<T>& result); //implementation of bubble sort
-
-};
-
-}
+void perform_sorting(int argc, char* argv[]); //perform the command line argument parsing, input, value parsing,
+											 //value generating, sorting, output and display process for lists of type T
 
 //definition of template functions
-#include "../sources/compare_class_algorithms.h"
-#include "../sources/compare_class_get.h"
-#include "../sources/compare_class_operators.h"
+#include "../sources/sort.h"
 
-#endif /* HEADERS_COMPARE_CLASS_H_ */
+#endif /* HEADERS_SORT_H_ */

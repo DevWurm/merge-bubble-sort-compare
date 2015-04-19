@@ -34,14 +34,14 @@
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
 
-#include "headers/compare_class.h"
 #include <fstream>
 #include <iostream>
 #include <deque>
-#include "headers/arguments.h"
 #include <typeinfo>
 #include "liberror/liberror.h"
-#include "sources/sort.h"
+#include "headers/sort.h"
+#include "headers/compare_class.h"
+#include "headers/arguments.h"
 
 using compare::compare_class;
 using namespace std;
@@ -49,7 +49,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	string type;
 	try {
-		type = get_input_type(argc, argv);
+		type = get_data_type(argc, argv); //get typeid name of given type
 	}
 	catch (err::error& e) {
 		e.output_error();
@@ -57,6 +57,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	try {
+		//use the matching process version to type
 		if (type == typeid(int).name()) {
 			perform_sorting<int>(argc, argv);
 		}
@@ -70,12 +71,6 @@ int main(int argc, char* argv[]) {
 	catch (err::error& e) {
 		e.output_error();
 	}
-
-
-
-
-
-
 
 	return 0;
 }

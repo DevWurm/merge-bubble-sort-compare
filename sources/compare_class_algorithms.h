@@ -33,40 +33,16 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-#include "../headers/compare_class.h"
-#include "./deque_functions.h"
+
 #include <deque>
+#include "../headers/compare_class.h"
+#include "../headers/deque_functions.h"
+#include "../headers/merge_sort_functions.h"
 
 using std::deque;
 
 
 namespace compare {
-
-template<typename T>
-deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) {
-	if (list1.size()==1 && list2.size()==0) {
-		return list1;
-	}
-	else {
-		deque<T> listret;
-		while (list1.size() > 0 && list2.size() >0) {
-			if (list1.at(0)<list2.at(0)) {
-				restack(list1, listret, 1);
-			}
-			else {
-				restack(list2, listret, 1);
-			}
-		}
-		if (list1.size()>0) {
-			restack(list1, listret, list1.size());
-		}
-		else if (list2.size()>0) {
-			restack(list2, listret, list2.size());
-		}
-		return listret;
-	}
-
-}
 
 template<typename T>
 void compare_class<T>::algorithm_1(const deque<T>& input, deque<T>& result) { // merge sort
@@ -95,13 +71,6 @@ void compare_class<T>::algorithm_1(const deque<T>& input, deque<T>& result) { //
 		}
 
 	}
-}
-
-template<typename T>
-void switch_positions(deque<T>& input, int position_1, int position_2) {
-	T buffer = input.at(position_1);
-	input.at(position_1) = input.at (position_2);
-	input.at(position_2) = buffer;
 }
 
 template<typename T>

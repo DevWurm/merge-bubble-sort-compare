@@ -34,44 +34,34 @@
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
 
-#ifndef HEADERS_COMPARE_CLASS_H_
-#define HEADERS_COMPARE_CLASS_H_
-
 #include <deque>
-#include "../libcompare/libcompare.h"
-#include "../libcsv/libcsv.h"
+#include "../headers/merge_sort_functions.h"
 
 using std::deque;
-using csv::csv_creator;
-using csv::csv_parser;
 
 namespace compare {
-
 template<typename T>
-class compare_class: public compare_base<deque<T> > { //derivation of compare_base with deque<T> type, algorithms and operators
-public:
-	compare_class<T>& operator =(string& input);
-	compare_class<T>& operator =(deque<T>& input);
-	template<typename S>
-	friend compare_class<S>& operator >>(csv_parser<S>& input, compare_class<S>& target);
-	csv_creator<T>& operator >>(csv_creator<T>& target);
-	template<typename S>
-	friend istream& operator >>(istream& input, compare_class<S>& target);
-	template<typename S>
-	friend ostream& operator <<(ostream& output, compare_class<S>& source);
-
-	int get_data_length() const; //get length of the data deque
-
-	void algorithm_1(const deque<T>& input, deque<T>& result); //implementation of merge sort
-	void algorithm_2(const deque<T>& input, deque<T>& result); //implementation of bubble sort
-
-};
-
+deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) {  //merge part of merge sort algorithm
+	if (list1.size()==1 && list2.size()==0) {
+		return list1;
+	}
+	else {
+		deque<T> listret;
+		while (list1.size() > 0 && list2.size() >0) {
+			if (list1.at(0)<list2.at(0)) {
+				restack(list1, listret, 1);
+			}
+			else {
+				restack(list2, listret, 1);
+			}
+		}
+		if (list1.size()>0) {
+			restack(list1, listret, list1.size());
+		}
+		else if (list2.size()>0) {
+			restack(list2, listret, list2.size());
+		}
+		return listret;
+	}
 }
-
-//definition of template functions
-#include "../sources/compare_class_algorithms.h"
-#include "../sources/compare_class_get.h"
-#include "../sources/compare_class_operators.h"
-
-#endif /* HEADERS_COMPARE_CLASS_H_ */
+}

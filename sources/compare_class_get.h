@@ -33,14 +33,15 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-#include "../headers/compare_class.h"
+
 #include <deque>
+#include "../headers/compare_class.h"
 
 using std::deque;
 
 namespace compare {
 	template<typename T>
-	int compare_class<T>::get_data_length() const {
+	int compare_class<T>::get_data_length() const {  //get length of the data deque
 		return this->get_data().size();
 	}
 }

@@ -33,10 +33,11 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-#include "../headers/compare_class.h"
-#include "../libcsv/libcsv.h"
+
 #include <istream>
 #include <deque>
+#include "../libcsv/libcsv.h"
+#include "../headers/compare_class.h"
 
 using std::deque;
 using std::istream;
@@ -47,7 +48,7 @@ using csv::csv_handler;
 namespace compare {
 
 	template<typename T>
-	compare_class<T>& compare_class<T>::operator =(string& input) {
+	compare_class<T>& compare_class<T>::operator =(string& input) { //parse csv string into data
 		csv_handler<T> temp_handler;
 		temp_handler.set_csv_line(input);
 		this->set_data(temp_handler.get_parsed_line());
