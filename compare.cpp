@@ -37,17 +37,45 @@
 #include "headers/compare_class.h"
 #include <fstream>
 #include <iostream>
+#include <deque>
+#include "headers/arguments.h"
+#include <typeinfo>
+#include "liberror/liberror.h"
+#include "sources/sort.h"
 
 using compare::compare_class;
 using namespace std;
 
-int main() {
-	ifstream input("../values.csv");
-	compare_class<int> compare_object;
+int main(int argc, char* argv[]) {
+	string type;
+	try {
+		type = get_input_type(argc, argv);
+	}
+	catch (err::error& e) {
+		e.output_error();
+		terminate();
+	}
 
-	input >> compare_object;
+	try {
+		if (type == typeid(int).name()) {
+			perform_sorting<int>(argc, argv);
+		}
+		else if (type == typeid(long).name()) {
+			perform_sorting<long>(argc, argv);
+		}
+		else if (type == typeid(double).name()) {
+			perform_sorting<double>(argc, argv);
+		}
+	}
+	catch (err::error& e) {
+		e.output_error();
+	}
 
-	compare_object.compare_algorithms_verbose(cout);
+
+
+
+
+
 
 	return 0;
 }

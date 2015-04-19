@@ -50,6 +50,8 @@ namespace compare {
 template<typename T>
 class compare_class: public compare_base<deque<T> > {
 public:
+	compare_class<T>& operator =(string& input);
+	compare_class<T>& operator =(deque<T>& input);
 	template<typename S>
 	friend compare_class<S>& operator >>(csv_parser<S>& input, compare_class<S>& target);
 	csv_creator<T>& operator >>(csv_creator<T>& target);
