@@ -59,12 +59,13 @@ void restack(deque<T>& source, deque<T>& target, int n){ //move n elements from 
 	}
 }
 
-}
 
 template<typename T>
 void switch_positions(deque<T>& input, int position_1, int position_2) {  //switch the elements position_1 and position_1 in input
 	T buffer = input.at(position_1);
 	input.at(position_1) = input.at (position_2);
 	input.at(position_2) = buffer;
+}
+
 }
 
