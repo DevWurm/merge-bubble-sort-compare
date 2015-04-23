@@ -48,20 +48,6 @@ using csv::csv_handler;
 namespace compare {
 
 	template<typename T>
-	compare_class<T>& compare_class<T>::operator =(string& input) { //parse csv string into data
-		csv_handler<T> temp_handler;
-		temp_handler.set_csv_line(input);
-		this->set_data(temp_handler.get_parsed_line());
-		return *this;
-	}
-
-	template<typename T>
-	compare_class<T>& compare_class<T>::operator =(deque<T>& input) {
-		this->set_data(input);
-		return *this;
-	}
-
-	template<typename T>
 	compare_class<T>& operator >>(csv_parser<T>& input, compare_class<T>& target) {
 		input >> target.data;
 		return target;

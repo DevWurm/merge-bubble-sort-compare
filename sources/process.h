@@ -41,7 +41,7 @@
 #include "../headers/arguments.h"
 #include "../headers/random_list.h"
 #include "../headers/compare_class.h"
-#include "../headers/sort.h"
+#include "../headers/process.h"
 
 using compare::compare_class;
 using namespace std;
@@ -89,7 +89,7 @@ void perform_sorting(int argc, char* argv[]) {
 		}
 
 		while (getline(input_file, buffer)) { //read each line into buffer
-			compare = buffer; //read buffer into compare
+			compare.set_data(buffer); //read buffer into compare
 
 			if (user_arguments.display_information) { //sort with verbose output if option is set
 				cout << "List length: " << compare.get_data_length() << '\n';
@@ -111,7 +111,7 @@ void perform_sorting(int argc, char* argv[]) {
 	}
 	else { //otherwise use random input
 		deque<T> random_data = generate_random_list<T>(user_arguments.random_input_length, user_arguments.random_input_start, user_arguments.random_input_end); //generate random list
-		compare = random_data; //assign random list to compare data
+		compare.set_data(random_data); //assign random list to compare data
 
 		if (user_arguments.display_information) {//sort with verbose output if option is set
 			cout << "List length: " << compare.get_data_length();

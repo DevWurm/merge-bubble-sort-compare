@@ -50,8 +50,6 @@ namespace compare {
 template<typename T>
 class compare_class: public compare_base<deque<T> > { //derivation of compare_base with deque<T> type, algorithms and operators
 public:
-	compare_class<T>& operator =(string& input);
-	compare_class<T>& operator =(deque<T>& input);
 	template<typename S>
 	friend compare_class<S>& operator >>(csv_parser<S>& input, compare_class<S>& target);
 	csv_creator<T>& operator >>(csv_creator<T>& target);
@@ -59,6 +57,9 @@ public:
 	friend istream& operator >>(istream& input, compare_class<S>& target);
 	template<typename S>
 	friend ostream& operator <<(ostream& output, compare_class<S>& source);
+
+	void set_data(const string& input);
+	void set_data(const deque<T>& input);
 
 	int get_data_length() const; //get length of the data deque
 
@@ -71,7 +72,7 @@ public:
 
 //definition of template functions
 #include "../sources/compare_class_algorithms.h"
-#include "../sources/compare_class_get.h"
+#include "../sources/compare_class_get_set.h"
 #include "../sources/compare_class_operators.h"
 
 #endif /* HEADERS_COMPARE_CLASS_H_ */

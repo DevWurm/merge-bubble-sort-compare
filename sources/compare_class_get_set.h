@@ -35,13 +35,27 @@
 */
 
 #include <deque>
+#include "../libcsv/libcsv.h"
 #include "../headers/compare_class.h"
 
 using std::deque;
+using csv::csv_handler;
 
 namespace compare {
 	template<typename T>
 	int compare_class<T>::get_data_length() const {  //get length of the data deque
 		return this->get_data().size();
+	}
+
+	template<typename T>
+	void compare_class<T>::set_data(const string& input) { //parse csv string into data
+		csv_handler<T> temp_handler;
+		temp_handler.set_csv_line(input);
+		compare_base<deque<T>>::set_data(temp_handler.get_parsed_line());
+	}
+
+	template<typename T>
+	void compare_class<T>::set_data(const deque<T>& input) { //parse csv string into data
+		compare_base<deque<T>>::set_data(input);
 	}
 }

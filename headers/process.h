@@ -33,14 +33,14 @@
 	    Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
-#ifndef HEADERS_SORT_H_
-#define HEADERS_SORT_H_
+#ifndef HEADERS_PROCESS_H_
+#define HEADERS_PROCESS_H_
 
 template<typename T>
 void perform_sorting(int argc, char* argv[]); //perform the command line argument parsing, input, value parsing,
 											 //value generating, sorting, output and display process for lists of type T
 
 //definition of template functions
-#include "../sources/sort.h"
+#include "../sources/process.h"
 
-#endif /* HEADERS_SORT_H_ */
+#endif /* HEADERS_PROCESS_H_ */

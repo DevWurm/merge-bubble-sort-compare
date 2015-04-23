@@ -34,16 +34,12 @@
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
 
-#include <fstream>
-#include <iostream>
-#include <deque>
+#include <string>
 #include <typeinfo>
 #include "liberror/liberror.h"
-#include "headers/sort.h"
-#include "headers/compare_class.h"
 #include "headers/arguments.h"
+#include "headers/process.h"
 
-using compare::compare_class;
 using namespace std;
 
 int main(int argc, char* argv[]) {
