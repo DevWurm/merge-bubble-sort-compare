@@ -114,7 +114,7 @@ void perform_sorting(int argc, char* argv[]) {
 		compare.set_data(random_data); //assign random list to compare data
 
 		if (user_arguments.display_information) {//sort with verbose output if option is set
-			cout << "List length: " << compare.get_data_length();
+			cout << "List length: " << compare.get_data_length() << '\n';
 			compare.compare_algorithms_verbose(cout);
 		}
 		else {//else sort with non-verbose version

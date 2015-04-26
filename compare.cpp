@@ -49,7 +49,6 @@ int main(int argc, char* argv[]) {
 	}
 	catch (err::error& e) {
 		e.output_error();
-		terminate();
 	}
 
 	try {

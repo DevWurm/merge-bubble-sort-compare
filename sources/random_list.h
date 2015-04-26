@@ -52,4 +52,5 @@ deque<T> generate_random_list (long long int length, T start, T end) { //create 
 	for (long long int i = 0; i <= length-1; i++) {
 		return_list.push_back(values(engine));
 	}
+	return return_list;
 }
