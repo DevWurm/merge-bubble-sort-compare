@@ -37,6 +37,7 @@
 #include <fstream>
 #include <iostream>
 #include <deque>
+#include <ios>
 #include "../liberror/liberror.h"
 #include "../headers/arguments.h"
 #include "../headers/random_list.h"
@@ -64,7 +65,7 @@ void perform_sorting(int argc, char* argv[]) {
 
 	//open output file if option is set
 	if (user_arguments.output_data) {
-		output_file.open(user_arguments.output_path);
+		output_file.open(user_arguments.output_path, ios::app);
 		if (output_file.fail()) {
 			throw err::error(7, "Output file not found");
 		}
@@ -72,7 +73,7 @@ void perform_sorting(int argc, char* argv[]) {
 
 	//open information output file if option is set
 	if (user_arguments.output_information) {
-		information_file.open(user_arguments.information_path);
+		information_file.open(user_arguments.information_path, ios::app);
 		if (information_file.fail()) {
 			throw err::error(8, "Information output file not found");
 		}

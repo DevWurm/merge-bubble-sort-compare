@@ -48,26 +48,33 @@ template<typename T>
 void compare_class<T>::algorithm_1(const deque<T>& input, deque<T>& result) { // merge sort
 	int input_size = input.size();
 	result = input;
+
+	//repeat the merging algorithm until input is sorted completely
 	for (int list_width = 1; list_width < input_size; list_width *= 2) {
 		deque<T> buffer;
 		restack(result, buffer, result.size());
+
+		//cycle through  the list and take list pairs with the size list_width
 		while (buffer.size() > 0) {
 			deque<T> list1;
 			deque<T> list2;
 			if (buffer.size() >= list_width) {
-				restack(buffer, list1, list_width);
+				restack(buffer, list1, list_width); //move list_width elements into list1
 			}
 			else {
+				//if less then list_width elements are remaining, move all remaining elements into list1
 				restack(buffer, list1, buffer.size());
 			}
 			if (buffer.size() >= list_width) {
-				restack(buffer, list2, list_width);
+				restack(buffer, list2, list_width); //move list_width elements into list2
 			}
 			else {
+				//if less then list_width elements are remaining, move all remaining elements into list2
 				restack(buffer, list2, buffer.size());
 			}
-			deque<T> return_buffer = merge_sort_merge(list1, list2);
-			restack(return_buffer, result, return_buffer.size());
+			deque<T> return_buffer = merge_sort_merge(list1, list2); //merge the lists (list2 will always
+																	//be the smaller list)
+			restack(return_buffer, result, return_buffer.size()); //move the result into result list
 		}
 
 	}

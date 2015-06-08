@@ -40,13 +40,17 @@
 using std::deque;
 
 namespace compare {
+
 template<typename T>
-deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) {  //merge part of merge sort algorithm
-	if (list1.size()==1 && list2.size()==0) {
+deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) { //list2 will always be the smaller list
+	//if list2 is empty use list1 as return list
+	if (list1.size() > 0 && list2.size()==0) {
 		return list1;
 	}
 	else {
 		deque<T> listret;
+
+		//cycle trough lists and compare the first elements, move the smaller element into result list
 		while (list1.size() > 0 && list2.size() >0) {
 			if (list1.at(0)<list2.at(0)) {
 				restack(list1, listret, 1);
@@ -55,6 +59,7 @@ deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) {  //merge part of m
 				restack(list2, listret, 1);
 			}
 		}
+		// if on list is empty, move all remaining elements into result list
 		if (list1.size()>0) {
 			restack(list1, listret, list1.size());
 		}
@@ -63,5 +68,7 @@ deque<T> merge_sort_merge(deque<T>& list1, deque<T>& list2) {  //merge part of m
 		}
 		return listret;
 	}
+
 }
+
 }
