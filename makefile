@@ -1,7 +1,7 @@
 all:
 	g++ compare.cpp liberror/liberror.a -std=c++11 -pthread -o ./compare
 
-run:
+release:
 	g++ compare.cpp liberror/liberror.a -std=c++11 -pthread -o ./compare
 
 debug:
