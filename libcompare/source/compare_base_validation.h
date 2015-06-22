@@ -34,15 +34,13 @@
 	    Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 */
 
-#ifndef LIB_LIBCOMPARE_H_
-#define LIB_LIBCOMPARE_H_
+#include "../headers/compare_base.h"
 
-#include "./headers/compare_base.h"
-#include "./source/compare_base_compare.h"
-#include "./source/compare_base_constructors.h"
-#include "./source/compare_base_destructors.h"
-#include "./source/compare_base_operators.h"
-#include "./source/compare_base_set_get.h"
-#include "./source/compare_base_validation.h"
+namespace compare {
 
-#endif /* LIB_LIBCOMPARE_H_ */
+template<typename T>
+bool compare_base<T>::vaildate_results() {
+	return (result_algorithm_1 == result_algorithm_2);
+}
+
+}
